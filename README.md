@@ -17,16 +17,16 @@ Kafka is an open-source message broker or distributed event streaming platform. 
 6. After creating data directory, we need to format a new directory using kafka-storage file by running the following code in the terminal.
    ```
    #get random uuid
-   ./bin/windows/kafka-storage.sh random-uuid
+   ./bin/windows/kafka-storage.bat random-uuid
 
    #format directory
-   ./bin/windows/kafka-storage.bat format --cluster.id <generated random-uuid> --config config/kraft/server.properties
+   ./bin/windows/kafka-storage.bat format --cluster-id <generated random-uuid> --config config/kraft/server.properties
    ```
    > Disclaimer: This repository is designed for Windows. For MacOS and Linux, execute the bash file located in the ./bin directory with the same name.
 
 7. Start Kafka by using kafka-server-start by running the following code
 ```
-./bin/windows/kafka-server-start.bar config/kraft/server/properties
+./bin/windows/kafka-server-start.bat config/kraft/server.properties
 ```
 
 ### Topic
@@ -64,7 +64,7 @@ Data in a Kafka Topic is stored in a `Log` format. The log is a simple method of
 ### Producer
 A `Producer` is responsible for sending Messages to Kafka. Each Message sent is stored at the last sequence. Kafka provides a simple Console `Producer` application in the `kafka-console-producer.bat` file.
 ```
-kafka-console-producer.sh --bootstrap-server <host:port> --topic <topic name>
+kafka-console-producer.bat --bootstrap-server <host:port> --topic <topic name>
 ```
 in my case
 ```
@@ -87,16 +87,16 @@ in my case,
 ### Consumer Group
 When a Consumer reads data from a Topic, a `Consumer Group` is automatically created. However, in a real application, we need to explicitly choose the `Consumer Group` to use. Typically, the `Consumer Group` uses its application name.
 
-#### Tanpa menyebutkan Consumer Group
+#### Without mentioning Consumer Group
 Automatically creates a new `Consumer Group`. Automatically generated `Consumer Group`s by Kafka will always be unique. If `Consumer Group`s are always different, data will be received repeatedly
   
-#### Menggunakan Consumer Group
+#### Using Consumer Group
 Consumers in the same `Consumer Group `become a unit Data from the topic won't be sent repeatedly, only once to one consumer in the same group
 
 
 To use a Consumer group, add the `--group <group name>` property:
 ```
-./bin/windows/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic explore-kafka --group kafka-group
+./bin/windows/kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic explore-kafka --group kafka-group
 ```
 
 #### When no active consumer and data keeps coming, where will the consumer read data when started?
@@ -118,7 +118,7 @@ kafka-topics.bat --bootstrap-server <host:port> --alter --topic <topic-name> --p
 ```
 To view information about a created topic:
 ```
-kafka-topics.sh --bootstrap-server <host:port> --describe --topic <topic-name>
+kafka-topics.bat --bootstrap-server <host:port> --describe --topic <topic-name>
 ```
 However, even with increased partitions, the number of consumers receiving data in the same consumer group remains 1. This is because we haven't implemented `routing`.
 
@@ -163,3 +163,20 @@ in my case,
 ```
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic explore-topic --group kafka-group --from-beginning --property "print.key=true"
 ```
+
+***
+# Kafka Implementation using Python
+Having acquired a basic understanding of Kafka, we are now prepared to put it into practice. For this implementation, we'll be utilizing Python.
+
+What we will do is create Python script to produce and send some messages to the "explore-kafka" topic that we previously created.
+
+
+
+# Reference
+https://www.youtube.com/watch?v=K7bIgpPAdbc&t=3371s
+
+***
+The reference below is still being explored because the consumer file is not displaying the messages as expected in my current implementation.
+
+- https://www.youtube.com/watch?v=Q4XA5nUpLeo
+- https://kafkaide.com/learn/how-to-start-using-apache-kafka-in-python/

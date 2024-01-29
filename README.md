@@ -165,17 +165,12 @@ kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic explore-top
 ```
 
 ***
-# Kafka Implementation using Python
-Having acquired a basic understanding of Kafka, we are now prepared to put it into practice. For this implementation, we'll be utilizing Python.
-
-What we will do is create Python script to produce and send some messages to the "explore-kafka" topic that we previously created.
-
-
 
 # Reference
 https://www.youtube.com/watch?v=K7bIgpPAdbc&t=3371s
 
-***
+# Kafka Implementation using Python
+
 The reference below is still being explored because the consumer file is not displaying the messages as expected in my current implementation.
 
 - https://www.youtube.com/watch?v=Q4XA5nUpLeo

@@ -7,10 +7,10 @@ Kafka is an open-source message broker or distributed event streaming platform. 
 - **Persistent**: Data is stored on disk, ensuring safety in case of delivery failures.
 
 ### How to install Kafka
-1. Install latest Java from [Eclipse Temurin](https://adoptium.net/temurin/releases/?os=any) because it is free and easy to install
-2. Download latest kafka from their official [website](https://kafka.apache.org/downloads)
+1. Install the latest Java from [Eclipse Temurin](https://adoptium.net/temurin/releases/?os=any) because it is free and easy to install
+2. Download the latest Kafka from their official [website](https://kafka.apache.org/downloads)
 3. Extract Kafka file
-4. By default, Kafka data is saved to /tmp/kraft-combined-logs. However, on Linux or Mac, this folder gets removed upon restarting. Therefore, it is recommended to modify the log.dirs setting in the server.properties file. Create a new folder in kafka directory, ex `data`, go to config > craft > server.properties and change log.dirs to data
+4. By default, Kafka data is saved to /tmp/kraft-combined-logs. However, on Linux or Mac, this folder gets removed upon restarting. Therefore, it is recommended to modify the log.dirs setting in the server.properties file. Create a new folder in the kafka directory, ex `data`, go to config > craft > server.properties and change log.dirs to data
    ```
    log.dirs=data
    ```
